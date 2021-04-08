@@ -14,5 +14,5 @@ Oprogramowania matematyczne
 - Maxima
 - R
 - Wolfram Mathematica
-- [RPN Calculator – interpreter języka PapajScript](github.com/RooiGevaar19/RPNCalculator/wiki) – autorskie oprogramowanie
+- [RPN Calculator – interpreter języka PapajScript](https://github.com/RooiGevaar19/RPNCalculator/wiki) – autorskie oprogramowanie
 
