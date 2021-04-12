@@ -1,3 +1,6 @@
 *.o
 *.ppu
 *.out
+*.run
+*.rsj
+*.class

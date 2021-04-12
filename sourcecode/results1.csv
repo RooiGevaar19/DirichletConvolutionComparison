@@ -1,0 +1,25 @@
+Free Pascal Compiler version 3.0.4+dfsg-23 [2019/11/25] for x86_64
+Copyright (c) 1993-2017 by Florian Klaempfl and others
+Target OS: Linux for x86-64
+Compiling Convolve.pas
+Convolve.pas(19,13) Warning: Symbol "GetTickCount" is deprecated: "Use GetTickCount64 instead"
+Convolve.pas(24,13) Warning: Symbol "GetTickCount" is deprecated: "Use GetTickCount64 instead"
+Convolve.pas(29,13) Warning: Symbol "GetTickCount" is deprecated: "Use GetTickCount64 instead"
+Convolve.pas(35,13) Warning: Symbol "GetTickCount" is deprecated: "Use GetTickCount64 instead"
+Convolve.pas(75,5) Note: Local variable "a" is assigned but never used
+Linking PASStd.run
+87 lines compiled, 10.0 sec
+4 warning(s) issued
+1 note(s) issued
+Free Pascal Compiler version 3.0.4+dfsg-23 [2019/11/25] for x86_64
+Copyright (c) 1993-2017 by Florian Klaempfl and others
+Target OS: Linux for x86-64
+Compiling ConvolveOpt.pas
+ConvolveOpt.pas(81,5) Note: Local variable "a" is assigned but never used
+Linking PASOpt.run
+94 lines compiled, 0.3 sec
+1 note(s) issued
+n	CPPStd	CPPOpt	PASStd	PASOpt	JAVStd	JAVOpt	PYTStd	PYTOpt	PYTSug	JSStd	JSOpt	JSSug
+1	0.045250	0.046441	0.002600	0.002600	0.028096	0.002563		0.080833	0.040352	0.093252
+2	0.015236	0.013008	0.000900	0.000800	0.031812	0.002708	0.048500	0.009665	0.017684	0.079371	0.038768	0.088195
+3	0.018100	0.012748	0.000800	0.000800	0.021873	0.002530	0.017939	0.003830	0.005095	

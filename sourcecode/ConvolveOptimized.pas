@@ -2,7 +2,7 @@ program Convolve;
 
 {$mode objfpc}{$H+}
 
-uses SysUtils, CThreads, Classes, StopWatch;
+uses SysUtils, CThreads, Classes;
 
 type Timer = object
     private
@@ -37,51 +37,57 @@ end;
 
 
 
-Function f(n : Int64) : Real;
+Function f(n : Integer) : Real;
 begin
     Result := 1.0 / n;
 end;
 
-Function g(n : Int64) : Real;
+Function g(n : Integer) : Real;
 begin
     Result := sin(n);
 end;
 
-Function convolve(n : Int64) : Real;
+Function convolve(n : Integer) : Real;
 Var 
     sum : Real;
-    i   : Int64;
+    i   : Integer;
 begin
     sum := 0;
-    for i := 1 to n do 
+    i := 1;
+    while i*i <= n do 
     begin
-        if (n mod i = 0) then sum := sum + f(i) * g(n div i);
+        if (n mod i = 0) then
+        begin
+            sum := sum + f(i) * g(n div i);
+            if (i*i <> n) then sum := sum + f(n div i) * g(i);
+        end; 
+        i := i + 1;
     end;
     Result := sum;
 end;
 
-//Function doTest(n : Int64) : Int64;
-//Var
-//    a : Real;
-//    t : Timer;
-//begin
-//    t.Reset;
-//    a := convolve(n);
-//    Result := t.Elapsed;
-//end;
-
-Function doTest(n : Integer) : Extended;
-var
+Function doTest(n : Integer) : LongInt;
+Var
     a : Real;
-    t : TStopWatch;
+    t : Timer;
 begin
-    t := TStopwatch.Create;
-    t.Start();
+    t.Reset;
     a := convolve(n);
-    t.Stop();
-    Result := t.ElapsedTicks / 10000.0;
+    Result := t.Elapsed;
 end;
 
+//Function doTest2(n : Integer) : Extended;
+//var
+//  Stopwatch: TStopwatch;
+//  Elapsed: TTimeSpan;
+//begin
+//    Stopwatch := TStopwatch.StartNew;
+//    DoSomething;
+//    Elapsed := Stopwatch.Elapsed;
+//
+//end;
+
+
 begin
-	write(doTest(StrToInt(ParamStr(1))):2:6);
+	write(doTest(StrToInt(ParamStr(1))));
 end.

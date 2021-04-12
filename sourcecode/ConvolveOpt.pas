@@ -9,30 +9,30 @@ type Timer = object
         _beg, _end : LongInt; 
     public
         constructor Create;
-        destructor Destroy;
+        //destructor Destroy;
         function Elapsed : LongInt;
         procedure Reset;
 end;
 
 constructor Timer.Create;
 begin
-    _beg := GetTickCount mod High(LongInt);
+    _beg := GetTickCount64 mod High(LongInt);
 end;
 
-destructor Timer.Destroy;
-begin
-    _end := GetTickCount mod High(LongInt);
-end;
+//destructor Timer.Destroy;
+//begin
+//    _end := GetTickCount64 mod High(LongInt);
+//end;
 
 function Timer.Elapsed : LongInt;
 begin
-    _end := GetTickCount mod High(LongInt);
+    _end := GetTickCount64 mod High(LongInt);
     Result := _end - _beg;
 end;
 
 procedure Timer.Reset;
 begin
-    _beg := GetTickCount mod High(LongInt);
+    _beg := GetTickCount64 mod High(LongInt);
 end;
 
 
@@ -53,9 +53,15 @@ Var
     i   : Int64;
 begin
     sum := 0;
-    for i := 1 to n do 
+    i := 1;
+    while i*i <= n do
     begin
-        if (n mod i = 0) then sum := sum + f(i) * g(n div i);
+        if (n mod i = 0) then 
+        begin
+            sum := sum + f(i) * g(n div i);
+            if (i*i <> n) then sum := sum + f(n div i) * g(i);
+        end;
+        i := i + 1;
     end;
     Result := sum;
 end;
@@ -81,6 +87,7 @@ begin
     t.Stop();
     Result := t.ElapsedTicks / 10000.0;
 end;
+
 
 begin
 	write(doTest(StrToInt(ParamStr(1))):2:6);

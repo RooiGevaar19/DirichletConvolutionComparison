@@ -1,0 +1,7 @@
+TIMEFORMAT=%R
+if [[ $2 -le 10000000 ]] ; 
+then
+	cat $1 | sed -e '$a convolve('"$2"')' | bc -lq
+else
+	echo "OffTheScale"
+fi
