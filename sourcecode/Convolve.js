@@ -43,6 +43,7 @@ function test1(k) {
     let start = performance.now(); 
     let a = convolve(f,g,k);
     let end = performance.now(); 
+    //console.log(a)
     return (end - start).toFixed(6).toString();
 }
 
@@ -50,6 +51,7 @@ function test2(k) {
     let start = performance.now(); 
     let a = convolve2(f,g,k);
     let end = performance.now(); 
+    //console.log(a)
     return (end - start).toFixed(6).toString();
 }
 
@@ -58,6 +60,7 @@ function test3(k) {
         let start = performance.now(); 
         let a = convolve3(f,g,k);
         let end = performance.now(); 
+        //console.log(a)
         return (end - start).toFixed(6).toString();
     } else {
         return "OffTheScale"

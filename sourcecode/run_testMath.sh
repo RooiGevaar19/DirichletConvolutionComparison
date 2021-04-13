@@ -1,24 +1,18 @@
 #!/bin/bash
 
-
 function testR() {
-	TIMEFORMAT=%R
-	if [[ $2 -le 100000000 ]] ; 
-	then
-		Rscript $1 $2 
-	else
-		echo -ne "OffTheScale"
-	fi
+	Rscript $1 $2 
 }
 
 function testPS() {
-	TIMEFORMAT=%R
-	echo -ne `time $(echo $2 | rpn $1)` 
+	./ProcClock.run "echo $2 | rpn $1"
 }
 
 function testBC() {
-	time `cat $1 | sed -e '$a convolve('"$2"')' | bc -lq` 2>> dump.txt
+	./ProcClock.run "cat $1 | sed 's/VALUE/$2/' | bc -lq >> dump.txt"
 }
+
+fpc ProcClock.pas -v0 -l- -oProcClock.run
 
 echo -ne "n\tPS\tR\tBC\n"
 
@@ -26,7 +20,7 @@ for item in 1 2 3 4 10 19 36 100 250 500 1000 2137 10000 100000 1000000 10000000
 do
 	echo -ne "$item\t"  
 	testPS Convolve.ppsc $item   
-	echo -ne "\b\t"  
+	echo -ne "\t"  
 	testR Convolve.r $item
 	echo -ne "\t"
 	testBC Convolve.bc $item

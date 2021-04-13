@@ -4,11 +4,11 @@ g++ Convolve.cpp -o CPPStd.run
 a=$?
 g++ ConvolveOpt.cpp -o CPPOpt.run
 a=$[ $a && $? ]
-rpc StopWatch.pas
+fpc StopWatch.pas -v0 -l- 
 a=$[ $a && $? ]
-fpc Convolve.pas -oPASStd.run
+fpc Convolve.pas -v0 -l- -oPASStd.run
 a=$[ $a && $? ]
-fpc ConvolveOpt.pas -oPASOpt.run
+fpc ConvolveOpt.pas -v0 -l- -oPASOpt.run
 a=$[ $a && $? ]
 javac Convolve.java
 

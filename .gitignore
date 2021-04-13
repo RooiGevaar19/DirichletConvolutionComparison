@@ -4,3 +4,5 @@
 *.run
 *.rsj
 *.class
+trash/
+**/dump.txt

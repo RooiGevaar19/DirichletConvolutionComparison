@@ -14,4 +14,4 @@ define convolve (k) {
     }
     return sum;
 };
-
+convolve(VALUE)
