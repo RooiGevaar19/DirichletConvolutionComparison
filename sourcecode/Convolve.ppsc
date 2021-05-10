@@ -1,16 +1,16 @@
 @use(Math)
 @use(Array)
 
-function { 1 swap / } -> f
+function { inv } -> f
 function { sin } -> g
 
-function {
-	>k >g >f
-	0 -> sum
-	for ( $i : [ $k genNaturalDivisors ] ) {
-		$i f $k $i div g * $sum + -> sum
-	}
-	$sum
+function ( f g k ) {
+	[ $k genNaturalDivisors ] 
+		function ( i ) {
+                 	$i f $k $i div g * 
+		} map
+		reduceSum
 } -> DirichletConvolve
 
-$f $g scan toNumber DirichletConvolve rem
+$f $g scan toNumber DirichletConvolve 
+rem
